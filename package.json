@@ -1,0 +1,35 @@
+{
+  "name": "fastify-decorators-clean",
+  "version": "1.0.0",
+  "description": "experimentation of using fastify & fastify decorators to implement clean architecture",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akbarsahata/fastify-decorators-clean.git"
+  },
+  "keywords": [
+    "fastify",
+    "fastify-decorators",
+    "clean",
+    "architeture"
+  ],
+  "author": "akbarsahata",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akbarsahata/fastify-decorators-clean/issues"
+  },
+  "homepage": "https://github.com/akbarsahata/fastify-decorators-clean#readme",
+  "dependencies": {
+    "fastify": "^4.17.0",
+    "fastify-decorators": "^3.15.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "eslint": "^8.40.0",
+    "typescript": "^5.0.4"
+  }
+}
