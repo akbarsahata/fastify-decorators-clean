@@ -4,7 +4,9 @@
   "description": "experimentation of using fastify & fastify decorators to implement clean architecture",
   "main": "dist/src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install",
+    "start": "NODE_ENV=development ts-node-dev --rs --inspect -r dotenv/config src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -23,13 +25,30 @@
   },
   "homepage": "https://github.com/akbarsahata/fastify-decorators-clean#readme",
   "dependencies": {
+    "@fastify/type-provider-typebox": "^3.2.0",
+    "@sinclair/typebox": "^0.28.14",
+    "envalid": "^7.3.1",
     "fastify": "^4.17.0",
-    "fastify-decorators": "^3.15.0"
+    "fastify-decorators": "^3.15.0",
+    "figlet": "^1.6.0",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@types/figlet": "^1.5.6",
     "@typescript-eslint/eslint-plugin": "^5.59.2",
     "@typescript-eslint/parser": "^5.59.2",
-    "eslint": "^8.40.0",
+    "dotenv": "^16.1.0",
+    "eslint": "^8.41.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }

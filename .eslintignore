@@ -1,0 +1,4 @@
+dist
+*/**.json
+src/proto/*d.ts
+src/proto/bundle.js
