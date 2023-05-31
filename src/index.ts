@@ -26,10 +26,8 @@ const start = async () => {
 
         console.log(text);
         console.log(`v${pkg.version}`);
-        console.log(`Server is running at http://${env.APP_HOST}:${env.APP_PORT}`);
-        console.log(
-          `Swagger can be viewed at http://localhost:${env.APP_PORT}/farming-documentation`,
-        );
+        console.log(`Server is running at http://${env.APP_URL}:${env.APP_PORT}`);
+        console.log(`Swagger can be viewed at http://${env.APP_URL}:${env.APP_PORT}/docs`);
       });
     }
   } catch (error) {
