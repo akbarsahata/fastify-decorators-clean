@@ -1,0 +1,1 @@
+export const ERR_METHOD_NOT_IMPLEMENTED = () => new Error('ERR_METHOD_NOT_IMPLEMENTED');

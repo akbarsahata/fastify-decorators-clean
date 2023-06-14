@@ -11,3 +11,13 @@ export const env = cleanEnv(process.env, {
   NODE_ENV: str({ choices: ['development', 'test', 'production', 'staging'] }),
   DEBUG_MODE: bool({ default: false }),
 });
+
+export const psqlEnv = cleanEnv(process.env, {
+  PGSQL_DB: str(),
+  PGSQL_HOST: str(),
+  PGSQL_PORT: port({ default: 5432 }),
+  PGSQL_USERNAME: str(),
+  PGSQL_PASSWORD: str(),
+  PGSQL_SCHEMA: str(),
+  PGSQL_LOG: bool({ default: false }),
+});
