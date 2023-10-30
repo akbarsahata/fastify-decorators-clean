@@ -1,4 +1,4 @@
-import { bool, cleanEnv, port, str } from 'envalid';
+import { bool, cleanEnv, num, port, str } from 'envalid';
 
 import pkg from '../../../package.json';
 
@@ -10,6 +10,7 @@ export const env = cleanEnv(process.env, {
   APP_HOST: str({ default: '0.0.0.0' }),
   NODE_ENV: str({ choices: ['development', 'test', 'production', 'staging'] }),
   DEBUG_MODE: bool({ default: false }),
+  OTP_EXPIRY_MINUTES: num({ default: 2 }),
 });
 
 export const psqlEnv = cleanEnv(process.env, {

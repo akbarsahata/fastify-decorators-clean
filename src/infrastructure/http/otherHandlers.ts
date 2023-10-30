@@ -2,9 +2,9 @@ import { requestContext } from '@fastify/request-context';
 import { FastifyInstance } from 'fastify';
 import { getInstanceByToken } from 'fastify-decorators';
 import pkg from '../../../package.json';
-import { Logger } from '../../lib/utils/logger';
-import { secondsToDurationText } from '../../lib/utils/helpers';
 import { env } from '../../lib/config/env';
+import { secondsToDurationText } from '../../lib/utils/helpers';
+import { Logger } from '../../lib/utils/logger';
 
 const logger = getInstanceByToken<Logger>(Logger);
 
@@ -27,12 +27,9 @@ export const registerOtherHandlers = async (server: FastifyInstance) => {
 
     reply.status(code);
     reply.send({
-      code,
-      error: {
-        name: error.code,
-        message: error.message,
-        ...(error.stack && env.isDev && { stack: error.stack }),
-      },
+      error: error.code,
+      error_description: error.message,
+      ...(error.stack && env.isDev && { stack: error.stack }),
     });
   });
 

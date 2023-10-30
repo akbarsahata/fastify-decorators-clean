@@ -19,5 +19,6 @@
     "titleBar.inactiveBackground": "#08a85a99",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.remoteColor": "#153006"
+  "peacock.remoteColor": "#153006",
+  "editor.tabSize": 2
 }

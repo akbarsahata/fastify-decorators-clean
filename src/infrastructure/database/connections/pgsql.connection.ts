@@ -3,7 +3,7 @@ import { DataSource } from 'typeorm';
 
 import { minutesToMilliseconds } from 'date-fns';
 import { env, psqlEnv } from '../../../lib/config/env';
-import { ProductPgsql } from '../entities/pgsql/product-pgsql.entity';
+import { UserPgsql } from '../entities/pgsql/user-pqsql.entity';
 
 @Service()
 export class PgsqlConnection {
@@ -25,7 +25,7 @@ export class PgsqlConnection {
         extra: {
           max: 10,
         },
-        entities: [ProductPgsql],
+        entities: [UserPgsql],
         logging: env.DEBUG_MODE,
       });
 
