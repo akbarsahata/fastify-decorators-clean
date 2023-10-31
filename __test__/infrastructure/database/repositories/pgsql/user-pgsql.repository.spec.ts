@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import 'reflect-metadata';
+
 import { configureServiceTest } from 'fastify-decorators/testing';
 import { PgsqlConnection } from '../../../../../src/infrastructure/database/connections/pgsql.connection';
 import { UserPgsqlRepository } from '../../../../../src/infrastructure/database/repositories/pgsql/user-pgsql.repository';

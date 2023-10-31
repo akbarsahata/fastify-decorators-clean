@@ -1,6 +1,6 @@
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  // Note resolver required only when using imports with extensions
   resolver: 'jest-ts-webcompat-resolver',
   // In test environment we setup reflect-metadata
   testEnvironment: './jest.environment.cjs',
