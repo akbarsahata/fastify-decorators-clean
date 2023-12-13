@@ -1,9 +1,9 @@
 import { Initializer, Inject, Service } from 'fastify-decorators';
-import { Product } from '../../../../domain/entities/product.entity';
-import { GetAllParams, GetOneParams } from '../../../../domain/repositories/base.repository';
-import { ProductRepository } from '../../../../domain/repositories/product.repository';
-import { PgsqlConnection } from '../../connections/pgsql.connection';
-import { ProductPgsql } from '../../entities/pgsql/product-pgsql.entity';
+import { Product } from '../../../domain/entities/product.entity';
+import { GetAllParams, GetOneParams } from '../../../domain/repositories/base.repository';
+import { ProductRepository } from '../../../domain/repositories/product.repository';
+import { PgsqlConnection } from '../connections/pgsql.connection';
+import { ProductPgsql } from '../entities/product-pgsql.entity';
 import { Repository } from 'typeorm';
 
 @Service()

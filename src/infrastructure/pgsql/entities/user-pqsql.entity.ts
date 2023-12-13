@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { User } from '../../../../domain/entities/user.entity';
+import { User } from '../../../domain/entities/user.entity';
 
 @Entity('user')
 export class UserPgsql implements User {

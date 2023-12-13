@@ -1,6 +1,6 @@
 import { Inject, Service } from 'fastify-decorators';
 import { ProductRepository } from '../../domain/repositories/product.repository';
-import { ProductPgsqlRepository } from '../../infrastructure/database/repositories/pgsql/product-pgsql.repository';
+import { ProductPgsqlRepository } from '../../infrastructure/pgsql/repositories/product-pgsql.repository';
 import { GetManyProductResponseItem } from '../dtos/product.dto';
 
 @Service()

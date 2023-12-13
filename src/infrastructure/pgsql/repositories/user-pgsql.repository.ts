@@ -1,11 +1,11 @@
 import { Initializer, Inject, Service } from 'fastify-decorators';
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
-import { User } from '../../../../domain/entities/user.entity';
-import { GetAllParams, GetOneParams } from '../../../../domain/repositories/base.repository';
-import { UserRepository } from '../../../../domain/repositories/user.repository';
-import { replaceWithIsNull } from '../../../../lib/utils/helpers';
-import { PgsqlConnection } from '../../connections/pgsql.connection';
-import { UserPgsql } from '../../entities/pgsql/user-pqsql.entity';
+import { User } from '../../../domain/entities/user.entity';
+import { GetAllParams, GetOneParams } from '../../../domain/repositories/base.repository';
+import { UserRepository } from '../../../domain/repositories/user.repository';
+import { replaceWithIsNull } from '../../../lib/utils/helpers';
+import { PgsqlConnection } from '../connections/pgsql.connection';
+import { UserPgsql } from '../entities/user-pqsql.entity';
 
 @Service()
 export class UserPgsqlRepository implements UserRepository {

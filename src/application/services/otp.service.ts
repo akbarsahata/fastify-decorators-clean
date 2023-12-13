@@ -1,7 +1,7 @@
 import { add, isAfter, isBefore } from 'date-fns';
 import { Inject, Service } from 'fastify-decorators';
 import { UserRepository } from '../../domain/repositories/user.repository';
-import { UserPgsqlRepository } from '../../infrastructure/database/repositories/pgsql/user-pgsql.repository';
+import { UserPgsqlRepository } from '../../infrastructure/pgsql/repositories/user-pgsql.repository';
 import { env } from '../../lib/config/env';
 import {
   ERR_OTP_EXPIRED,
@@ -13,7 +13,8 @@ import { generateOtp } from '../../lib/utils/helpers';
 
 @Service()
 export class OtpService {
-  @Inject(UserPgsqlRepository) userRepository: UserRepository;
+  @Inject(UserPgsqlRepository)
+  private userRepository: UserRepository;
 
   async createOrUpdateOtpByUserId(userId: string) {
     const now = new Date();
