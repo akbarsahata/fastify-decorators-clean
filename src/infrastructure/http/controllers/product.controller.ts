@@ -1,10 +1,10 @@
 import { Controller, GET, Inject } from 'fastify-decorators';
-import { ProductUseCase } from '../../application/usecases/product.usecase';
+import { ProductUseCase } from '../../../application/usecases/product.usecase';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import {
   GetManyProductResponse,
   getManyProductResponseDTO,
-} from '../../application/dtos/product.dto';
+} from '../../../application/dtos/product.dto';
 
 @Controller({
   route: '/products',

@@ -4,7 +4,7 @@ import 'reflect-metadata';
 import figlet from 'figlet';
 
 import pkg from '../package.json';
-import { initServer } from './infrastructure/http/server';
+import { initServer } from './infrastructure/http';
 import { env } from './lib/config/env';
 
 const start = async () => {

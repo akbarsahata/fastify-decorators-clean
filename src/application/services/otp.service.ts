@@ -13,12 +13,12 @@ import { generateOtp } from '../../lib/utils/helpers';
 
 @Service()
 export class OtpService {
-  @Inject(UserPgsqlRepository) repository: UserRepository;
+  @Inject(UserPgsqlRepository) userRepository: UserRepository;
 
   async createOrUpdateOtpByUserId(userId: string) {
     const now = new Date();
 
-    const user = await this.repository.getOne({
+    const user = await this.userRepository.getOne({
       where: { id: userId },
       select: {
         id: true,
@@ -37,7 +37,7 @@ export class OtpService {
 
     const otp = generateOtp();
 
-    await this.repository.updateOneById(userId, {
+    await this.userRepository.updateOneById(userId, {
       otp,
       lastOtpRequestAt: new Date(),
       lastOtpValidationAt: null,
@@ -52,7 +52,7 @@ export class OtpService {
   async validateOtpByUserId(userId: string, otp: string) {
     const now = new Date();
 
-    const user = await this.repository.getOne({
+    const user = await this.userRepository.getOne({
       where: { id: userId, otp },
     });
 
@@ -68,7 +68,7 @@ export class OtpService {
       throw ERR_OTP_EXPIRED('potentially compromised');
     }
 
-    await this.repository.updateOneById(userId, {
+    await this.userRepository.updateOneById(userId, {
       lastOtpValidationAt: new Date(),
     });
 

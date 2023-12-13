@@ -10,8 +10,8 @@ import {
   validateOtpRequestBodyDTO,
   ValidateOtpSuccessResponse,
   validateOtpSuccessResponseDTO,
-} from '../../application/dtos/otp.dto';
-import { OtpUseCase } from '../../application/usecases/otp.usecase';
+} from '../../../application/dtos/otp.dto';
+import { OtpUseCase } from '../../../application/usecases/otp.usecase';
 
 @Controller({
   route: '/otp',

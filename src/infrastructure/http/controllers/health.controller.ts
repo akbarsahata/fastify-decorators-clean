@@ -1,6 +1,6 @@
 import { Controller, GET, Inject } from 'fastify-decorators';
-import { HealthUseCase } from '../../application/usecases/health.usecase';
-import { HealthResponse, healthResponseDTO } from '../../application/dtos/health.dto';
+import { HealthUseCase } from '../../../application/usecases/health.usecase';
+import { HealthResponse, healthResponseDTO } from '../../../application/dtos/health.dto';
 
 @Controller({
   route: '/health',
