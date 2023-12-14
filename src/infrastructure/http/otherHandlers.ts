@@ -43,7 +43,14 @@ export const registerOtherHandlers = async (server: FastifyInstance) => {
     });
   });
 
-  server.all('/', async (_, reply) => {
+  server.get('/', (_, reply) => {
+    reply.status(200);
+    reply.header('content-type', 'text/html');
+    reply.header('content-security-policy', "script-src 'self' 'nonce-694206664444' https:;");
+    reply.sendFile('index.html');
+  });
+
+  server.all('/status', async (_, reply) => {
     const uptime = secondsToDurationText(process.uptime());
 
     reply.header('content-type', 'application/json');

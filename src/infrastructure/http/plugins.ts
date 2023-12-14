@@ -1,10 +1,13 @@
 import cors from '@fastify/cors';
 import helmet from '@fastify/helmet';
 import { fastifyRequestContext } from '@fastify/request-context';
+import fastifyStatic from '@fastify/static';
+import fastifySocketIO from 'fastify-socket.io';
 import fasitfySwagger from '@fastify/swagger';
 import fastifySwaggerUI from '@fastify/swagger-ui';
 import { FastifyInstance } from 'fastify';
 import multer from 'fastify-multer';
+import path from 'path';
 import pkg from '../../../package.json';
 import { env } from '../../lib/config/env';
 
@@ -20,6 +23,12 @@ if (env.isDev) {
 }
 
 export const registerPlugins = async (server: FastifyInstance) => {
+  await server.register(fastifySocketIO, {
+    cors: {
+      origin: '*',
+    },
+  });
+
   await server.register(fastifyRequestContext, {
     defaultStoreValues: {
       requestId: '',
@@ -30,8 +39,11 @@ export const registerPlugins = async (server: FastifyInstance) => {
   });
 
   await server.register(cors, { origin: '*' });
+
   await server.register(helmet, { global: true });
+
   await server.register(multer.contentParser);
+
   await server.register(fasitfySwagger, {
     swagger: {
       info: {
@@ -77,5 +89,9 @@ export const registerPlugins = async (server: FastifyInstance) => {
     transformStaticCSP: (header) => header,
     transformSpecification: (swaggerObject) => swaggerObject,
     transformSpecificationClone: true,
+  });
+
+  await server.register(fastifyStatic, {
+    root: path.join(__dirname, '../../../public'),
   });
 };
