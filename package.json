@@ -8,7 +8,7 @@
     "prepare": "husky install",
     "dev": "NODE_ENV=development NODE_NO_WARNINGS=1 ts-node-dev --rs --inspect -r dotenv/config src/index.ts",
     "build": "tsc",
-    "container": "NODE_ENV=production NODE_NO_WARNINGS=1 node -r dotenv/config dist/src/index.js"
+    "start": "NODE_ENV=production NODE_NO_WARNINGS=1 node -r dotenv/config dist/src/index.js"
   },
   "repository": {
     "type": "git",
