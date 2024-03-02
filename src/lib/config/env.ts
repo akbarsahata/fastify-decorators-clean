@@ -22,3 +22,8 @@ export const psqlEnv = cleanEnv(process.env, {
   PGSQL_SCHEMA: str(),
   PGSQL_LOG: bool({ default: false }),
 });
+
+export const redisEnv = cleanEnv(process.env, {
+  REDIS_HOST: str(),
+  REDIS_PORT: port({ default: 6379 }),
+});

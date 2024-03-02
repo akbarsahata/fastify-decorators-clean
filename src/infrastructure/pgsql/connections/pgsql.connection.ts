@@ -2,7 +2,7 @@ import { Destructor, Initializer, Service } from 'fastify-decorators';
 import { DataSource } from 'typeorm';
 
 import { minutesToMilliseconds } from 'date-fns';
-import { env, psqlEnv } from '../../../lib/config/env';
+import { env, psqlEnv, redisEnv } from '../../../lib/config/env';
 import { UserPgsql } from '../entities/user-pqsql.entity';
 
 @Service()
@@ -27,6 +27,13 @@ export class PgsqlConnection {
         },
         entities: [UserPgsql],
         logging: env.DEBUG_MODE,
+        cache: {
+          type: 'ioredis',
+          options: {
+            host: redisEnv.REDIS_HOST,
+            port: redisEnv.REDIS_PORT,
+          },
+        },
       });
 
       await this.connection.initialize();

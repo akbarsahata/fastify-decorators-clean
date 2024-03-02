@@ -1,0 +1,26 @@
+# Ignore common Node.js files and folders
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignore development and build files
+.DS_Store
+
+*.log
+*.pid
+*.lock
+*.swp
+*.swo
+*.swn
+*.map
+
+# Ignore editor specific files and folders
+.vscode
+.idea
+
+# Ignore user-specific or environment-specific files
+.dockerignore
+.Dockerfile
+docker-compose.yml
+
+# Ignore any other files or directories that are not required for the Docker image
