@@ -1,7 +1,9 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { Product } from '../../../domain/entities/product.entity';
 
-@Entity('product')
+@Entity({
+  name: 'product',
+})
 export class ProductPgsql implements Product {
   @PrimaryColumn('uuid') id: string;
 

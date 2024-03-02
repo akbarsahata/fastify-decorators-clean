@@ -33,6 +33,8 @@ const start = async () => {
       logger.info('server is closing');
       await server.close();
       logger.info('server is closed');
+
+      process.exit(0);
     });
   } catch (error) {
     logger.error(error);

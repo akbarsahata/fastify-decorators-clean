@@ -1,13 +1,19 @@
-import { Destructor, Initializer, Service } from 'fastify-decorators';
+import { Destructor, Initializer, Inject, Service } from 'fastify-decorators';
 import { DataSource } from 'typeorm';
 
 import { minutesToMilliseconds } from 'date-fns';
 import { env, psqlEnv, redisEnv } from '../../../lib/config/env';
 import { UserPgsql } from '../entities/user-pqsql.entity';
+import { ProductPgsql } from '../entities/product-pgsql.entity';
+import { FarmerPgsql } from '../entities/farming-pqsql.entity';
+import { Logger } from '../../../lib/utils/logger';
 
 @Service()
 export class PgsqlConnection {
   connection!: DataSource;
+
+  @Inject(Logger)
+  private logger!: Logger;
 
   @Initializer()
   async init() {
@@ -25,7 +31,7 @@ export class PgsqlConnection {
         extra: {
           max: 10,
         },
-        entities: [UserPgsql],
+        entities: [UserPgsql, ProductPgsql, FarmerPgsql],
         logging: env.DEBUG_MODE,
         cache: {
           type: 'ioredis',
@@ -38,10 +44,11 @@ export class PgsqlConnection {
 
       await this.connection.initialize();
 
-      console.log({ message: '[CONNECTION] Connected to PostgreSQL' });
+      this.logger.info({ message: '[CONNECTION] Connected to PostgreSQL' });
     } catch (error) {
-      console.log({ message: '[CONNECTION] Error connecting to PostgreSQL' });
-      console.error(error);
+      this.logger.info({ message: '[CONNECTION] Error connecting to PostgreSQL' });
+
+      this.logger.error(error);
     }
   }
 
