@@ -8,7 +8,8 @@ export interface Log {
     | 'query-error-log'
     | 'query-slow-log'
     | 'error-log'
-    | 'inline-log';
+    | 'inline-log'
+    | 'mqtt-message-log';
   request_id: string;
 }
 
@@ -26,6 +27,7 @@ export interface ErrorLog extends Error {
 }
 
 export interface RequestLog extends Log {
+  hostname: string;
   method: string;
   url: string;
   user_id: string;
@@ -37,9 +39,24 @@ export interface RequestLog extends Log {
 }
 
 export interface ResponseLog extends Log {
+  hostname: string;
+  method: string;
+  url: string;
+  user_id: string;
+  user_token: string;
   status_code: number;
   response_time: number | string;
   response: any;
+}
+
+export interface MqttMessageLog extends Log {
+  hostname: string;
+  method: string;
+  topic: string;
+  device_id: string;
+  device_type: string;
+  meta?: any;
+  payload?: any;
 }
 
 export interface ResponseErrorLog extends Log {

@@ -4,15 +4,16 @@ import { requestContext } from '@fastify/request-context';
 import { Service } from 'fastify-decorators';
 import pino from 'pino';
 import { Logger as TypeORMLogger } from 'typeorm';
+import { env } from '../../lib/config/env';
 import {
   ErrorLog,
+  MqttMessageLog,
   QueryErrorLog,
   QueryLog,
   QuerySlowLog,
   RequestLog,
   ResponseLog,
 } from '../types/logger.d';
-import { env } from '../config/env';
 
 @Service('AppLogger')
 export class Logger {
@@ -87,10 +88,30 @@ export class Logger {
     });
   }
 
+  logMqttMessage(data: MqttMessageLog) {
+    this.info({
+      ...data,
+      meta: env.DEBUG_MODE && data.meta,
+      payload: env.DEBUG_MODE && this.parseBufferPayload(data.payload),
+    });
+  }
+
   // eslint-disable-next-line class-methods-use-this
   parsePayload(data: any) {
     try {
       return JSON.parse(data);
+    } catch (error) {
+      return data;
+    }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  parseBufferPayload(data: any) {
+    try {
+      if (data instanceof Buffer) {
+        return data.toString('hex');
+      }
+      return data;
     } catch (error) {
       return data;
     }

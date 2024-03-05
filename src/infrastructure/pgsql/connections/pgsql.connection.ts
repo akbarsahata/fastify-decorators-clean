@@ -6,7 +6,7 @@ import { env, psqlEnv, redisEnv } from '../../../lib/config/env';
 import { UserPgsql } from '../entities/user-pqsql.entity';
 import { ProductPgsql } from '../entities/product-pgsql.entity';
 import { FarmerPgsql } from '../entities/farming-pqsql.entity';
-import { Logger } from '../../../lib/utils/logger';
+import { DBLogger, Logger } from '../../../lib/utils/logger';
 
 @Service()
 export class PgsqlConnection {
@@ -14,6 +14,9 @@ export class PgsqlConnection {
 
   @Inject(Logger)
   private logger!: Logger;
+
+  @Inject(DBLogger)
+  private dbLogger!: DBLogger;
 
   @Initializer()
   async init() {
@@ -32,7 +35,8 @@ export class PgsqlConnection {
           max: 10,
         },
         entities: [UserPgsql, ProductPgsql, FarmerPgsql],
-        logging: env.DEBUG_MODE,
+        logging: env.DEBUG_MODE && psqlEnv.PGSQL_LOG,
+        logger: env.DEBUG_MODE && psqlEnv.PGSQL_LOG ? this.dbLogger : undefined,
         cache: {
           type: 'ioredis',
           options: {
